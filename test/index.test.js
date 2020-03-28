@@ -49,4 +49,20 @@ describe('Endpoint tests', () => {
         console.log("Our booking has id " + bookingId);
         chai.expect(1).to.equal(1);
     });
+
+describe('Get /events endpoint test', () => {
+    it('Should make a Get request', (done) => {
+        chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
+            chai.expect(res).to.have.status(200);
+            done();
+        });
+    });
+    // it('Should return in JSON format', (done) => {
+    //     chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
+    //         chai.expect(res.body).to.be.a.json;
+    //         done();
+    //     });
+    // });
+});
+
 });
