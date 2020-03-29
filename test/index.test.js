@@ -50,19 +50,31 @@ describe('Endpoint tests', () => {
         chai.expect(1).to.equal(1);
     });
 
-describe('Get /events endpoint test', () => {
+describe('Get /events endpoint tests', () => {
     it('Should make a Get request', (done) => {
         chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
             chai.expect(res).to.have.status(200);
             done();
         });
     });
-    // it('Should return in JSON format', (done) => {
-    //     chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
-    //         chai.expect(res.body).to.be.a.json;
-    //         done();
-    //     });
-    // });
+    it('The response body is in json format', (done) => {
+        chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
+            chai.expect(res).to.be.json;
+            done();
+        });
+    });
+    it('The return type is an array', (done) => {
+        chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
+            chai.expect(res.body).to.be.an('array');
+            done();
+        });
+    });
+    it('The array contains the right amount of elements i.e 1', (done) => {
+        chai.request('http://localhost:3000/api/v1').get('/events').end((err, res) => {
+            chai.expect(res.body).to.have.length(1);
+            done();
+        });
+    });
 });
 
 });
